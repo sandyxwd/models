@@ -304,9 +304,12 @@ def build_labeled_sequence(seq, class_label, label_gain=False):
   return label_seq
 
 
+import jieba
+
 def split_by_punct(segment):
   """Splits str segment by punctuation, filters our empties and spaces."""
-  return [s for s in re.split(r'\W+', segment) if s and not s.isspace()]
+  return [s for s in jieba.lcut(segment) if s and not s.isspace() and s not in "～！@#￥%……&×（）——+`-={}【】|:;‘“《》？、~`!@#$%^&*()_+-=|:;\"<>,.?/\n'"]
+  # return [s for s in re.split(r'\W+', segment) if s and not s.isspace()]
 
 
 def sort_vocab_by_frequency(vocab_freq_map):
