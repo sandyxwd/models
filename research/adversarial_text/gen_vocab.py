@@ -68,7 +68,7 @@ def fill_vocab_from_doc(doc, vocab_freqs, doc_counts):
 
 
 def main(_):
-  tf.logging.set_verbosity(tf.logging.INFO)
+  tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
   vocab_freqs = defaultdict(int)
   doc_counts = defaultdict(int)
 
@@ -93,9 +93,9 @@ def main(_):
   ordered_vocab_freqs.append((data_utils.EOS_TOKEN, 1))
 
   # Write
-  tf.gfile.MakeDirs(FLAGS.output_dir)
+  tf.io.gfile.makedirs(FLAGS.output_dir)
   data_utils.write_vocab_and_frequency(ordered_vocab_freqs, FLAGS.output_dir)
 
 
 if __name__ == '__main__':
-  tf.app.run()
+  tf.compat.v1.app.run()

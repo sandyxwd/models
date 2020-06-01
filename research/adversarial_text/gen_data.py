@@ -58,7 +58,7 @@ def build_shuffling_tf_record_writer(fname):
 
 
 def build_tf_record_writer(fname):
-  return tf.python_io.TFRecordWriter(os.path.join(FLAGS.output_dir, fname))
+  return tf.io.TFRecordWriter(os.path.join(FLAGS.output_dir, fname))
 
 
 def build_input_sequence(doc, vocab_ids):
@@ -198,8 +198,8 @@ def generate_test_data(vocab_ids, writer_lm_all, writer_seq_ae_all):
 
 
 def main(_):
-  tf.logging.set_verbosity(tf.logging.INFO)
-  tf.logging.info('Assigning vocabulary ids...')
+  tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
+  tf.compat.v1.logging.info('Assigning vocabulary ids...')
   vocab_ids = make_vocab_ids(
       FLAGS.vocab_file or os.path.join(FLAGS.output_dir, 'vocab.txt'))
 
@@ -214,4 +214,4 @@ def main(_):
 
 
 if __name__ == '__main__':
-  tf.app.run()
+  tf.compat.v1.app.run()

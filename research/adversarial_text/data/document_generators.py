@@ -244,7 +244,7 @@ def dbpedia_documents(dataset='train',
   if not FLAGS.dbpedia_input_dir:
     raise ValueError('Must provide FLAGS.dbpedia_input_dir')
 
-  tf.logging.info('Generating DBpedia documents...')
+  tf.compat.v1.logging.info('Generating DBpedia documents...')
 
   with open(os.path.join(FLAGS.dbpedia_input_dir, dataset + '.csv')) as db_f:
     reader = csv.reader(db_f)
