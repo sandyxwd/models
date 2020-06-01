@@ -253,8 +253,11 @@ def dbpedia_documents(dataset='train',
       is_validation = random.randint(1, 10) == 1
       if is_validation and not include_validation:
         continue
-
-      content = row[1] + ' ' + row[2]
+      # tf.compat.v1.logging.info(row)
+      if len(row)==2:
+          content = row[1]
+      else:
+          content = row[1] + ' ' + row[2]
       yield Document(
           content=content,
           is_validation=is_validation,
